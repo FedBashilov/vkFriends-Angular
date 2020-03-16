@@ -5,7 +5,7 @@ import { AuthorizationPageComponent } from './pages/authorization-page/authoriza
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
 const routes: Routes = [
-    {path: '', redirectTo: 'authorization', pathMatch: 'full'},
+    {path: '', redirectTo: 'main', pathMatch: 'full'},
     {path: 'authorization', component: AuthorizationPageComponent},
     {path: 'main', component: MainPageComponent},
     {path: '**', redirectTo: 'menu', pathMatch: 'full'}

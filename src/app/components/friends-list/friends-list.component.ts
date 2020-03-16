@@ -23,7 +23,6 @@ export class FriendsListComponent implements OnInit {
     this.vkApi.getFriends().subscribe( (friends: any) => {
       this.friends = friends.response.items;
       console.log(this.friends);
-
     });
   }
 }
