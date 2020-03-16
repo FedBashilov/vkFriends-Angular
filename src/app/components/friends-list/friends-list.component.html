@@ -1,0 +1,15 @@
+<div class="">
+  Friends
+</div>
+	<div class="friend_card" *ngFor="let friend of friends; index as i;">
+    <div class="image">
+      <img class="friend_card_image" [defaultImage]="'assets/loading.png'" [lazyLoad]=friend.photo_100>
+    </div>
+    <div class="friend_first_name">
+      {{friend.first_name}}
+    </div>
+    <div class="friend_last_name">
+      {{friend.last_name}}
+    </div>
+
+</div>
