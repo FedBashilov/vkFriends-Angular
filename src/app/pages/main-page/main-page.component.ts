@@ -16,19 +16,17 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(){
-
     let reg = new RegExp("access_token=(.*)&expires_in", "g");
     let urlMatch = reg.exec(this.router.url);
 
     if( urlMatch ){
       let urlToken = urlMatch[1];
-
       this.vkApi.setToken(urlToken);
-      this.router.navigate(['/main']);  //hide url token
+      this.router.navigateByUrl('/main');  //hide url token
     }
 
     if( !this.vkApi.getToken() ){
-      this.router.navigate(['/authorization']);
+      this.router.navigateByUrl('/authorization');
     }
   }
 

@@ -15,7 +15,7 @@ export class AuthorizationPageComponent implements OnInit {
 
   ngOnInit() {
     if( this.vkApi.getToken() ){
-      this.router.navigate(['/main']);
+      this.router.navigateByUrl('/main');
     }
   }
 

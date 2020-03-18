@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { VkAPIService } from "../../services/vk-api.service";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: 'app-friends-list',
@@ -9,10 +10,9 @@ import { VkAPIService } from "../../services/vk-api.service";
 })
 export class FriendsListComponent implements OnInit {
 
-  friends = [];
+  public friends: User[] = [];
 
   constructor(private vkApi: VkAPIService){
-
   }
 
   ngOnInit(){
@@ -22,7 +22,6 @@ export class FriendsListComponent implements OnInit {
   getFriends(){
     this.vkApi.getFriends().subscribe( (friends: any) => {
       this.friends = friends.response.items;
-      console.log(this.friends);
     });
   }
 }

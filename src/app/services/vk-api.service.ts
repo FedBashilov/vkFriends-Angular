@@ -14,13 +14,7 @@ export class VkAPIService {
   }
 
   setToken(access_token){
-    let data: any = new Object;
-    data.access_token = access_token;
-
-    let serialData = JSON.stringify(data);
-
-    localStorage.removeItem("access_token");
-    localStorage.setItem("access_token", serialData);
+    localStorage.setItem("access_token", access_token);
   }
 
   getToken(){
@@ -29,7 +23,12 @@ export class VkAPIService {
 
   getFriends(): Observable<any>{
     let token = this.getToken().access_token;
-    return this.httpClient.get<any>(`${this.API_SERVER}/method/friends.search?count=5&fields=photo_100&access_token=${token}&v=5.52`);
+    return this.httpClient.jsonp<any>(`${this.API_SERVER}/method/friends.search?count=5&fields=photo_100&access_token=${token}&v=5.52`, "callback");
+  }
+
+  getCurrentUserInfo(): Observable<any>{
+    let token = this.getToken().access_token;
+    return this.httpClient.jsonp<any>(`${this.API_SERVER}/method/users.get?fields=photo_100&access_token=${token}&v=5.103`, "callback");
   }
 
 }
