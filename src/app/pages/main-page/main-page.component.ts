@@ -16,31 +16,21 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(){
-    //обрезаем url
-    let token = this.vkApi.getToken();
-    console.log("token", token);
 
     let reg = new RegExp("access_token=(.*)&expires_in", "g");
-    let urlToken = reg.exec(this.router.url)[1];
-    console.log("url token", urlToken);
-let nowDate = new Date().valueOf();
-    console.log(token.deathDate, nowDate);
+    let urlMatch = reg.exec(this.router.url);
 
-    if( token ) {
-      if( nowDate >= token.deathDate){
-        if(token.access_token == urlToken){
-          //needNewToken
-          window.location.href = "https://oauth.vk.com/authorize?client_id=7358012&display=page&redirect_uri=http://localhost:4200/main&scope=friends&response_type=token&v=5.52";
-        } else {
-          //setNewToken
-          this.vkApi.setToken(urlToken);
-        }
-      }
-    } else if(urlToken){
-        this.vkApi.setToken(urlToken);
-    } else{
+    if( urlMatch ){
+      let urlToken = urlMatch[1];
+
+      this.vkApi.setToken(urlToken);
+      this.router.navigate(['/main']);  //hide url token
+    }
+
+    if( !this.vkApi.getToken() ){
       this.router.navigate(['/authorization']);
     }
   }
+
 
 }

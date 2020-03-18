@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { VkAPIService } from "../../services/vk-api.service";
 
 @Component({
   selector: 'app-authorization-page',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizationPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vkApi: VkAPIService, private router: Router) {
+  }
 
   ngOnInit() {
+    if( this.vkApi.getToken() ){
+      this.router.navigate(['/main']);
+    }
   }
 
 }
