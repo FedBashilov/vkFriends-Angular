@@ -16,10 +16,10 @@ export class CurrentUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getuserInfo();
+    this.getUserInfo();
   }
 
-  getuserInfo(){
+  getUserInfo(){
     this.vkApi.getCurrentUserInfo().subscribe( (user: any) => {
       this.user = user.response[0];
     });

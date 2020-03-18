@@ -18,16 +18,16 @@ export class VkAPIService {
   }
 
   getToken(){
-    return JSON.parse(localStorage.getItem("access_token"));
+    return localStorage.getItem("access_token");
   }
 
   getFriends(): Observable<any>{
-    let token = this.getToken().access_token;
+    let token = this.getToken();
     return this.httpClient.jsonp<any>(`${this.API_SERVER}/method/friends.search?count=5&fields=photo_100&access_token=${token}&v=5.52`, "callback");
   }
 
   getCurrentUserInfo(): Observable<any>{
-    let token = this.getToken().access_token;
+    let token = this.getToken();
     return this.httpClient.jsonp<any>(`${this.API_SERVER}/method/users.get?fields=photo_100&access_token=${token}&v=5.103`, "callback");
   }
 

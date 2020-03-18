@@ -13,9 +13,13 @@ import { VkAPIService } from "../../services/vk-api.service";
 export class MainPageComponent implements OnInit {
 
   constructor(private vkApi: VkAPIService, private router: Router){
+    this.checkToken();
   }
 
   ngOnInit(){
+  }
+
+  checkToken(){
     let reg = new RegExp("access_token=(.*)&expires_in", "g");
     let urlMatch = reg.exec(this.router.url);
 
@@ -29,6 +33,5 @@ export class MainPageComponent implements OnInit {
       this.router.navigateByUrl('/authorization');
     }
   }
-
 
 }
